@@ -1,0 +1,53 @@
+.addgood-page {
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+
+.page-select-form {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 10px 0 20px;
+}
+
+.button-select-form {
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 10px 10px 0 0;
+    background-color: var(--second-color-grey);
+    color: var(--second-font-grey);
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: 14px;
+    transform: 0.35ms;
+    cursor: pointer;
+}
+
+.button-select-form:hover {
+    color: var(--main-font-grey);
+    box-shadow: var(--box-shadow);
+}
+
+.button-select-form.active {
+    box-shadow: var(--box-shadow);
+    background-color: var(--main-bg);
+    z-index: 92;
+    color: var(--main-color-red);
+}
+
+.form {
+    display: none;
+    flex-direction: column;
+    box-sizing: border-box;
+    background-color: var(--main-bg);
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: var(--container-shadow);
+    padding: 10px;
+}
+
+.form.active {
+    display: flex;
+}

@@ -1,0 +1,10 @@
+.organization.page-background {
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.organization.page-container {
+    padding: 10px;
+}

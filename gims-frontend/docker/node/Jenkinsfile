@@ -1,0 +1,121 @@
+pipeline {
+    agent { label 'jenkins-tower' } // the windows one can't run docker
+    environment {
+        REGISTRY = "${DOCKER_PRIVATE_REGISTRY}"
+        REPO_NAME = sh(returnStdout: true, script: 'echo `echo $JOB_NAME  | awk -F / \'{print $2}\'`').trim()
+        VERSION = sh(returnStdout: true, script: 'echo `git describe --always --tags`').trim()
+        DOCKER_IMAGE = "${REGISTRY}/${REPO_NAME}:${VERSION}"
+        REPORT_DIR = "${WORKSPACE}/sec_report/"
+        ANALYSIS_REPORT = "${REPO_NAME}_${VERSION}_report.json"
+    }
+
+    stages {
+        stage('Setup') {
+            steps {
+                sh '''
+                    echo WORKSPACE : $WORKSPACE
+                    echo DOCKER_IMAGE: $DOCKER_IMAGE
+                    echo Version: $VERSION
+                    echo Report DIR: $REPORT_DIR
+                '''
+            }
+        }
+
+        stage('Analysis') {
+             when {
+               expression { env.BRANCH_NAME.contains('master') }
+             }
+             parallel {
+                  stage('Security Analysis') {
+                      agent {
+                          label 'jenkins102'
+                      }
+                      steps {
+                          sh '''
+                          /nfs/jenkins_scripts/p_security_scanner.sh $REPO_NAME $REPORT_DIR $ANALYSIS_REPORT
+                          '''
+                      }
+                  }
+          
+                  stage("SonarQube analysis") {
+                      agent {
+                          label 'jenkins102'
+                      }
+                      steps {
+                        withEnv(["PATH+NODEJS=${tool 'nodejs'}/bin"]) {
+                          withSonarQubeEnv('SonarQubeTrain') {
+                            println "${env.SONAR_HOST_URL}"
+                            sh '''
+                            ${scannerHome}/bin/sonar-scanner \
+                            -Dsonar.projectKey=$REPO_NAME \
+                            -Dsonar.projectName=$REPO_NAME \
+                            -Dsonar.projectVersion=$BUILD_TAG \
+                            -Dsonar.sources=$WORKSPACE \
+                            -Dsonar.exclusions=\"**/*_test.go,**/*.pb.go,mock/**/*\"
+                            '''
+                          }
+                        }
+                        timeout(time: 1, unit: 'HOURS') {
+                            // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+                            // true = set pipeline to UNSTABLE, false = don't
+                            waitForQualityGate abortPipeline: true
+                        }
+                      }
+                  }
+	     }
+	}
+
+        stage('Build') {
+            agent {
+                dockerfile {
+                    filename "docker/Dockerfile"
+                    label 'jenkins-tower'
+                    reuseNode true
+                    additionalBuildArgs '-t ${DOCKER_IMAGE}'
+                    args '-u 0:0'
+                }
+            }
+            steps {
+               echo 'Run build image...${DOCKER_IMAGE}'
+            }
+        }
+
+        stage('Push Docker image') {
+            steps {
+                sh 'dive --ci ${DOCKER_IMAGE}'
+                echo "Run docker push ${DOCKER_IMAGE}"
+                sh 'docker push ${DOCKER_IMAGE}'
+            }
+        }
+
+        stage('Deploy-kube-dev') {
+          environment {
+             namespace = "dev-intern"
+          }
+          steps {
+            sh '''
+            if [ -z "`kubectl -n $namespace get pod | grep ${REPO_NAME}`" ] ; then
+              sed -i -e "s|image:.*|image: ${DOCKER_IMAGE}|g" $WORKSPACE/deployment.yaml
+              kubectl -n $namespace apply -f $WORKSPACE/deployment.yaml
+              kubectl -n $namespace apply -f $WORKSPACE/service.yaml
+            else
+              kubectl -n $namespace set image deployment/${REPO_NAME} ${REPO_NAME}=${DOCKER_IMAGE}
+            fi
+            '''
+          }
+        }
+
+
+    }
+    post {
+        success {
+            echo "$REPO_NAME has been successfully built and pushed!"
+        }
+        failure {
+            echo '$REPO_NAME building or pushing process has failed'
+            emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+            recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+            subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+        }
+    }
+}

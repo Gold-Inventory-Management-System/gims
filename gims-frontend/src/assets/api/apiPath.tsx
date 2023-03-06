@@ -1,0 +1,30 @@
+const api = {
+  registerAsAdmin: '/auth/register-admin',
+  signin: '/auth/signin',
+  register: '/auth/register',
+  getUserProfile: '/auth/profile',
+  getQueryAllUser: '/auth/query-all-user',
+  removeUser: '/auth/delete-user/',
+  addNewGold: '/inventory/new-gold',
+  findQueryGold: '/inventory/find-gold-detail-by-detail',
+  addQueryGold: '/inventory/add-gold',
+  setSerialNumber: '/inventory/set-tag-serial-number',
+  editGold: '/inventory/edit-gold-detail',
+  getGoldDetailById: '/inventory/get-gold-detail-by-gold-detail-id/',
+  getGoldDetailJoinInventoyBySerial: '/inventory/get-gold-by-tag-serial-number?serial-number=',
+  setGoldStatus: '/inventory/set-gold-inventory-status',
+  deleteGold: '/inventory/delete-gold-inventory-by-id',
+  getAllGoldDetail: '/inventory/get-all-gold-detail',
+  getAllGoldDetailJoinInventory: '/inventory/get-all-detail-join-inventory',
+  getFrontGold: '/inventory/get-front-gold',
+  checkGold: '/inventory/check-gold',
+  getAllTransactionJoinGold: '/transaction/get-all-transaction-join-gold',
+  createBuyTransaction: '/transaction/new-buy-transaction',
+  findQueryGoldByInventory: '/inventory/get-gold-detail-join-inventory-by-detail',
+  createSellTransaction: '/transaction/new-sell-transaction',
+  createChangeTransaction: '/transaction/new-change-transaction',
+  getTransactionDashboard: '/transaction/get-dashboard',
+  IP: 'http://localhost:8080'
+};
+
+export default api;

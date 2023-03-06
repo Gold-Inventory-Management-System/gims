@@ -1,0 +1,46 @@
+version: '3.7'
+services: 
+  gims-timescaledb: 
+    image: timescale/timescaledb-ha:pg14-latest
+    container_name: gims-timescaledb
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=ppaallmm
+      - POSTGRES_DB=gims
+    ports:
+      - "5432:5432"
+    volumes:
+      - data:/var/lib/postgresql/data
+  gims-backend:
+    container_name: gims-backend
+    build: 
+      context: ./gims-backend
+      dockerfile: Dockerfile
+    image: gims-backend
+    depends_on:
+      - gims-timescaledb
+    environment:
+      - TIMESCALECONN=postgres://postgres:ppaallmm@gims-timescaledb:5432/gims
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin
+    restart: on-failure
+    networks:
+      - default
+    ports:
+    - "8080:8080"
+  gims-frontend:
+    container_name: gims-frontend
+    build: 
+      context: ./gims-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    depends_on: 
+      - gims-backend
+    volumes:
+      - ./gims-frontend:/opt/gims-frontend
+      - /opt/gims-frontend/node_modules
+volumes: 
+  data:

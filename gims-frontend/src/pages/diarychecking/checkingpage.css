@@ -1,0 +1,420 @@
+.checking-page.page-background {
+    flex-direction: column;
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+
+.checking-bar.page-content {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 8px;
+    z-index: 89;
+}
+
+.checking-bar.button-start-check {
+    display: flex;
+    background-color: var(--main-bg);
+    border: 2px solid var(--main-color-red);
+    border-radius: 5px;
+    padding: 2px 10px;
+    color: var(--main-color-red);
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 16px;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+}
+
+.checking-bar.button-start-check:hover {
+    background-color: var(--main-color-red);
+    color: var(--main-font-white);
+}
+
+.checking-bar.button-start-check:active {
+    transform: translateY(1px);
+}
+
+.form-checking {
+    display: flex;
+    column-gap: 5px;
+    align-items: center;
+}
+
+.input-serial::-webkit-outer-spin-button,
+.input-serial::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.inputbox.input-serial {
+    width: auto;
+    height: 32px;
+    border-color: var(--second-color-grey);
+}
+
+.inputbox.input-serial:focus {
+    border-color: var(--main-color-grey);
+}
+
+.button-group {
+    display: flex;
+    column-gap: 10px;
+}
+
+.checking-bar.button-done {
+    display: none;
+    background-color: var(--main-color-red);
+    border: 2px solid var(--main-color-red);
+    border-radius: 5px;
+    padding: 2px 10px;
+    color: var(--main-font-white);
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.checking-bar.button-done:hover {
+    background-color: var(--second-color-red);
+    border: 2px solid var(--second-color-red);
+}
+
+.checking-bar.button-reset {
+    display: none;
+    background-color: var(--main-bg);
+    border: 2px solid var(--main-color-yellow);
+    border-radius: 5px;
+    padding: 2px 10px;
+    color: var(--main-color-yellow);
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 16px;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+}
+
+.checking-bar.button-reset:hover {
+    background-color: var(--main-color-yellow);
+    color: var(--main-font-white);
+}
+
+.checking-bar.button-done.active,
+.checking-bar.button-reset.active {
+    display: flex;
+}
+
+.checking-bar.button-done:active,
+.checking-bar.button-reset:active {
+    transform: translateY(1px);
+}
+
+.checking-not {
+    display: none;
+    width: 100%;
+    height: 80vh;
+    color: var(--second-font-grey);
+    text-transform: capitalize;
+    font-size: 20px;
+}
+
+.checking-not.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.checking-table.page-content {
+    display: none;
+    margin-top: 10px;
+    overflow: scroll;
+}
+
+.checking-table.page-content.active {
+    display: flex;
+}
+
+.checking-table.page-content::-webkit-scrollbar {
+    display: none;
+}
+
+.checking-table.page-content > table {
+    width: 100%;
+}
+
+.checking-table.row-header {
+    color: var(--main-color-red);
+    text-transform: capitalize;
+}
+
+.checking-table.row-header th {
+    padding: 5px 0;
+}
+
+.checking-table.head-icon {
+    width: 5%;
+}
+
+.checking-table.head-id {
+    width: 15%;
+}
+
+.checking-table.head-code {
+    width: 15%;
+}
+
+.checking-table.head-type {
+    width: 55%;
+}
+
+.checking-table.head-detail {
+    width: auto;
+}
+
+.checking-table.head-weight {
+    width: 8%;
+}
+
+.checking-table.head-gold-percent {
+    width: 8%;
+}
+
+.checking-table.head-gold-smith-fee {
+    width: 8%;
+}
+
+.checking-table.row-body {
+    display: none;
+}
+
+.checking-table.row-body.checked {
+    display: table-row;
+}
+
+.checking-table.row-body > td {
+    border: 0;
+    border-top: 1px solid var(--second-color-grey);
+    padding: 10px;
+    background-color: var(--second-color-grey);
+    color: var(--main-color-grey);
+    text-transform: capitalize;
+    transition: all 0.3s;
+}
+
+.checking-table.row-body.checked > td {
+    background-color: var(--main-bg);
+    color: var(--main-font-black);
+    border-radius: 5px;
+}
+
+.checking-table.body-detail,
+.checking-table.body-icon,
+.checking-table.body-type {
+    text-align: center;
+}
+
+.checking-table.body-weight,
+.checking-table.body-gold-percent,
+.checking-table.body-gold-smith-fee {
+    text-align: end;
+}
+
+.checking-result.modal-bg {
+    opacity: 0;
+    pointer-events: none;
+    box-sizing: border-box;
+    padding: 1em 5em;
+    overflow: scroll;
+}
+
+.checking-result.modal-bg::-webkit-scrollbar {
+    display: none;
+}
+
+.checking-result.modal-bg.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.checking-result.page-content {
+    display: flex;
+    flex-direction: column;
+    transition: all 0.35s ease-out;
+    opacity: 0;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.checking-result.page-content.active {
+    opacity: 1;
+}
+
+.checking-result.page-content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    padding: 10px;
+    border-bottom: 1px solid var(--second-color-grey);
+    height: 5%;
+    position: sticky;
+    top: -17px;
+    background-color: var(--main-bg);
+    box-shadow: 0 1px 3px #e5e5e5;
+}
+
+.checking-result.table-topic {
+    display: flex;
+    column-gap: 5px;
+    align-items: center;
+    text-transform: capitalize;
+    padding-left: 10px;
+    margin: 5px 0;
+    width: 100%;
+}
+
+.checking-result.table-topic.miss {
+    color: var(--main-color-yellow);
+}
+
+.checking-result.table-topic.all {
+    color: var(--main-color-green);
+}
+
+.checking-result.table {
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.checking-result.table.none {
+    display: none;
+}
+
+.checking-result.table,
+.checking-result.table th {
+    border-top: solid 1px var(--second-color-grey);
+    border-bottom: solid 1px var(--main-color-grey);
+}
+
+.checking-result.table tr {
+    border-left: solid 1px var(--second-color-grey);
+    border-right: solid 1px var(--second-color-grey);
+}
+
+.checking-result.table th,
+.checking-result.table td {
+    padding: 5px 10px;
+}
+
+.checking-result.table th {
+    text-transform: capitalize;
+}
+
+.checking-result.table-head.picture {
+    width: 15%;
+}
+
+.checking-result.table-head.code {
+    width: 10%;
+    text-align: left;
+}
+
+.checking-result.table-head.type {
+    width: 9%;
+    text-align: left;
+}
+
+.checking-result.table-head.detail {
+    width: 22%;
+    text-align: left;
+}
+
+.checking-result.table-head.weight {
+    width: 7%;
+}
+
+.checking-result.table-head.gold-percent {
+    width: 7%;
+}
+
+.checking-result.table-head.gold-smith-fee {
+    width: 7%;
+}
+
+.checking-result.table-head.note {
+    width: 23%;
+    text-align: left;
+}
+
+.checking-result.table-row.even {
+    background-color: var(--second-bg);
+}
+
+.checking-result.table-body.picture img {
+    max-height: 5em;
+}
+
+.checking-result.table-body.picture {
+    width: 15%;
+    text-align: center;
+}
+
+.checking-result.table-body.code {
+    width: 10%;
+}
+
+.checking-result.table-body.type {
+    width: 9%;
+}
+
+.checking-result.table-body.detail {
+    width: 22%;
+}
+
+.checking-result.table-body.weight,
+.checking-result.table-body.gold-percent,
+.checking-result.table-body.gold-smith-fee {
+    text-align: right;
+}
+
+.checking-result.table-body.note {
+    width: 23%;
+}
+
+@media screen and (max-width: 500px) {
+    .checking-bar.page-content {
+        flex-direction: column;
+        row-gap: 10px;
+    }
+
+    .form-checking {
+        flex-direction: column;
+        row-gap: 10px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .checking-result.page-content {
+        overflow-x: clip;
+    }
+
+    .checking-result.page-content::-webkit-scrollbar {
+        display: none;
+    }
+
+    .checking-result.page-content-header {
+        left: 0;
+    }
+}

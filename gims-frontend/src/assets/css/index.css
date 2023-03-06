@@ -1,0 +1,106 @@
+:root {
+    --main-bg: #ffffff;
+    --second-bg: #F6F6F6;
+
+    --red-bg: #ffd9d9;
+
+    --main-color-red: #B93030;
+    --second-color-red: #8B1A1A;
+    --third-color-red: #E95A5A;
+    --fourth-color-red: #ff0f0f;
+    --fifth-color-red: #F9A9A9;
+
+    --main-color-yellow: #FCA311;
+
+    --main-color-blue: #0070ff;
+
+    --main-color-green: #30b94f;
+
+    --main-color-grey: grey;
+    --second-color-grey: rgb(240, 240, 240);
+
+    --main-font-black: #000;
+    --main-font-grey: #555;
+    --second-font-grey: #bbbbbb;
+    --main-font-white: #ffffff;
+
+    --sidenav-width: 200px;
+    --sidenav-short-width: 60px;
+
+    --bottomnav-height: 4rem;
+
+    --container-shadow: 0 0 5px #D7D7F1;
+    --box-shadow: -4px -7px 10px #e5e5e5;
+    --card-shadow-red: 0 0 10px #ffcdcd;
+}
+
+*, html, body { 
+    scroll-behavior: smooth !important;
+}
+
+body, button, input {
+    font-family: 'Prompt', sans-serif;
+}
+
+.page-background {
+    display: flex;
+    background-color: var(--second-bg);
+    min-height: 100vh;
+}
+
+.page-header {
+    display: flex;
+    box-sizing: border-box;
+    padding-top: 10px;
+    padding-left: 30px;
+    font-size: 30px;
+    font-weight: 600;
+    width: 100%;
+    height: 50px;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.page-container {
+    display: flex;      
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.page-content {
+    display: flex;
+    box-sizing: border-box;
+    background-color: var(--main-bg);
+    border-radius: 5px;
+    box-shadow: var(--container-shadow);
+}
+
+.page-content-header {
+    color: var(--main-font-black);
+    text-transform: capitalize;
+    font-size: 20px;
+    margin-bottom: 7px;
+}
+
+.inputbox {
+    box-sizing: border-box;
+    border: solid 2px grey;
+    border-radius: 4px;
+    padding: 0 10px;
+}
+
+.modal-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background-color: rgba(0,0,0,0.5);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom:0;
+    height: 100%;
+    max-height: 100vh;
+    width: 100vw;
+    z-index: 99;
+}

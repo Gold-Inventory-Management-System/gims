@@ -1,0 +1,132 @@
+.report-page.page-background {
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.report-page.page-container {
+    row-gap: 10px;
+    overflow: hidden;
+}
+
+.container-create-pdf-button {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 10px 0 10px;
+}
+
+.create-pdf-button {
+    padding: 5px 10px;
+    background-color: inherit;
+    border: 2px solid var(--main-color-red);
+    border-radius: 5px;
+    color: var(--main-color-red);
+    cursor: pointer;
+}
+
+.create-pdf-button:hover {
+    background-color: var(--main-color-red);
+    color: var(--main-font-white);
+}
+
+.create-pdf-button:active {
+    transform: translateY(1px);
+}
+
+.report-page.page-flex {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+.report-page.page-content {
+    padding: 10px 20px;
+}
+
+.report-page.page-content.trans-stat {
+    flex: 25%;
+    display: flex;
+    flex-direction: column;
+    max-height: 16vh;
+}
+
+.report-page.page-content.trans-chart {
+    flex: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 54vh;
+}
+
+.report-page.page-content.trans-value {
+    flex: 33%;
+    display: flex;
+    flex-direction: column;
+    max-height: 11vh;
+}
+
+.trans-stat.header {
+    color: var(--second-font-grey);
+    font-size: 16px;
+    text-align: left;
+    margin: 0;
+}
+
+.trans-stat.value {
+    font-size: 30px;
+    text-align: center;
+}
+
+.trans-stat.today {
+    font-size: 14px;
+    text-align: center;
+}
+
+.today-value {
+    color: var(--main-color-green);
+}
+
+.trans-value.header {
+    color: var(--second-font-grey);
+    font-size: 16px;
+    text-align: left;
+    margin: 0;
+}
+
+.trans-value.cost {
+    display: flex;
+    align-items: baseline;
+    column-gap: 10px;
+}
+
+.trans-value.cost > .value {
+    font-size: 28px;
+}
+
+@media screen and (max-width: 1024px) {
+    .report-page.page-background {
+        max-width: calc(100vw - var(--sidenav-short-width));
+    }
+
+    .report-page.page-flex {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .report-page.page-background {
+        max-width: 100%;
+    }
+
+    .container-create-pdf-button {
+        flex-direction: column;
+        justify-content: center;
+        row-gap: 10px;
+    }
+
+    .report-page.page-flex {
+        flex-direction: column;
+    }
+}

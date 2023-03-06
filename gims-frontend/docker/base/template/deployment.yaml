@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: RPC_NAME
+  labels:
+    app: RPC_NAME
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: RPC_NAME
+  template:
+    metadata:
+      labels:
+        project: esign
+        app: RPC_NAME
+    spec:
+      containers:
+      - name: RPC_NAME
+        image: RPC_NAME-image
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http-port
+          containerPort: 3000
+        readinessProbe:
+          tcpSocket:
+            port: 3000
+          initialDelaySeconds: 1
+          periodSeconds: 10
+          timeoutSeconds: 2
+          successThreshold: 1
+          failureThreshold: 3
+        lifecycle:
+          preStop:
+            exec:
+              command:
+                - /bin/sh
+                - '-c'
+                - sleep 60;
+        livenessProbe:
+          tcpSocket:
+            port: 3000
+          initialDelaySeconds: 200
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+#          terminationGracePeriodSeconds: 60
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu: "20m"
+          limits:
+            memory: "64Mi"
+            cpu: "50m"
+        envFrom:
+          - configMapRef:
+              name: RPC_NAME-config-volume
+          - secretRef:
+              name: generic-config
+        volumeMounts:
+          - name: RPC_NAME-config-volume
+            mountPath: '/config'
+      volumes:
+        - name: RPC_NAME-config-volume
+          configMap:
+            name: RPC_NAME-config-volume
+

@@ -1,0 +1,210 @@
+.inventory.page-background {
+    flex-direction: column;
+    box-sizing: border-box;
+    height: 100vh;
+}
+
+.page-container {     
+    flex-direction: column;
+
+}
+
+.inventory-page-option {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: var(--main-bg);
+    border-radius: 5px;
+    box-shadow: var(--container-shadow);
+    padding: 8px;
+    margin-bottom: 2vh;
+    z-index: 89;
+}
+
+.option-radio {
+    display: flex;
+    column-gap: 10px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    text-transform: capitalize;
+    font-weight: 600;
+    color: var(--second-font-grey);
+    margin: 0 5px;
+    padding-left: 22px;
+    transition: all 0.3s;
+}
+
+.radio-label input {
+    position: absolute;
+    opacity: 0;
+}
+
+.radio-label input:checked ~ span {
+    color: var(--main-color-red);
+}
+
+.radio-ckeckbox {
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    left: 0;
+    background-color: #cccccc;
+    border: solid 1px #bbbbbb;
+    border-radius: 50%;
+    transform: translateY(-1.5px);
+}
+
+.radio-label input:checked ~ .radio-ckeckbox {
+    background-color: var(--main-color-red);
+    border: solid 1px var(--main-color-red);
+}
+
+.option-input {
+    display: flex;
+    column-gap: 15px;
+}
+
+.option-select-type {
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.option-select-type select {
+    display: flex;
+    box-sizing: border-box;
+    padding: 0 1em;
+    width: 160px;
+    height: 33px;
+    border: solid 1.5px var(--second-font-grey);
+    border-radius: 4px;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: capitalize;
+}
+
+.option-select-type .custom-arrow {
+    display: block;
+    background-color: inherit;
+    border-radius: 0 4px 4px 0;
+    width: 2em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    pointer-events: none
+}
+
+.option-select-type .custom-arrow::after {
+    --size: 0.4em;
+    border-left: var(--size) solid transparent;
+    border-right: var(--size) solid transparent;
+    border-top: var(--size) solid var(--main-color-grey);
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.option-input-search {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.option-input-search input {
+    padding: 5px;
+    border: 1.5px solid var(--second-font-grey);
+    border-radius: 3px;
+    outline: none;
+    height: 20px;
+    font-size: 14px;
+}
+
+.option-vertical-line {
+    border-left: 2px solid var(--second-font-grey);
+    height: auto;
+}
+
+.go-to-add-goods {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--main-color-red);
+    border: 2px solid var(--main-color-red);
+    border-radius: 5px;
+    padding: 0 10px 0 5px;
+    color: var(--main-font-white);
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 16px;
+}
+
+.go-to-add-goods:active {
+    transform: translateY(2px);
+    background-color: var(--second-color-red);
+    border-color: var(--second-color-red);
+}
+
+.inventory-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: clip;
+    width: 100%;
+}
+
+.inventory-table::-webkit-scrollbar {
+    display: none;
+}
+
+@media screen and (max-width: 1200px) {
+    .inventory-page-option {
+        flex-direction: column;
+        row-gap: 10px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .option-input {
+        flex-direction: column;
+        row-gap: 10px;
+    }
+
+    .option-select-type select {
+        width: 100%;
+    }
+
+    .go-to-add-goods {
+        width: fit-content;
+    }
+}
+
+@media screen and (min-width: 501px) {
+    .inventory.page-background {
+        max-width: calc(100vw - var(--sidenav-short-width));
+    }
+    
+}
+
+@media screen and (max-width: 500px) {
+    .inventory.page-background,
+    .page-container {
+        padding-bottom: var(--bottomnav-height);
+        margin-bottom: var(--bottomnav-height);
+    }
+}

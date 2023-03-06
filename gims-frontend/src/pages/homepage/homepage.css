@@ -1,0 +1,74 @@
+.background {
+    background-color: var(--main-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    max-height: 100vh;
+    max-width: 100vw;
+}
+
+.header {
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--main-color-red);
+    margin-bottom: 30px;
+}
+
+.button {
+    display: flex;
+}
+
+.button-go-signin {
+    font-size: 16px;
+    padding: 0.8em;
+    width: 8em;
+    border-radius: 10px;
+    text-transform: capitalize;
+    font-weight: 600;
+    margin-right: 20px;
+    color: var(--main-color-red);
+    background-color: var(--main-bg);
+    border: solid 2px var(--main-color-red);
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.button-go-signin:hover {
+    color: var(--main-bg);
+    background-color: var(--second-color-red);
+    border: solid 2px var(--second-color-red);
+    /* transform: scale(18) rotate(1800deg); */
+}
+.button-gooooooo {
+    display: block;
+    width: 130px;
+    height: 50px;
+} 
+
+.button-go-start {
+    font-size: 16px;
+    padding: 0.8em;
+    width: 8em;
+    border-radius: 10px;
+    text-transform: capitalize;
+    font-weight: 600;
+    color: var(--main-bg);
+    background-color: var(--main-color-red);
+    border: solid 2px var(--main-color-red);
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.button-go-start:hover {
+    background-color: var(--second-color-red);
+    border-color: var(--second-color-red);
+}
+
+/* .button-gooooooo .button-go-start:hover {
+    transform: rotateY(3600deg) translateY(-800px);
+} */
+

@@ -1,0 +1,168 @@
+.organization-page-register {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    transition: all 0.35s ease-out;
+}
+
+.goback-account {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.goback-account-button {
+    width: 50px;
+    padding: 5px;
+    color: var(--main-color-red);
+    font-size: 18px;
+    border: solid 2px var(--main-color-red);
+    border-radius: 5px;
+    background-color: var(--second-bg);
+    margin: 10px 0 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.goback-account-button:hover {
+    color: var(--main-bg);
+    border-color: var(--main-color-red);
+    background-color: var(--main-color-red);
+}
+
+.register-main {
+    flex-direction: column;
+    width: 100%;
+    padding: 15px 20px 40px 20px;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-form input {
+    display: flex;
+    box-sizing: border-box;
+    width: 350px;
+    height: 40px;
+    border: solid 2px var(--main-color-grey);
+    border-radius: 4px;
+    font-size: 15px;
+    margin-bottom: 15px;
+    padding: 0 10px;
+}
+
+.input-password-match {
+    display: none;
+    color: var(--fourth-color-red);
+    margin-bottom: 15px;
+    text-transform: capitalize;
+}
+
+.input-password-match.invalid {
+    display: block;
+}
+
+.select-accuont-type {
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    position: relative;
+}
+
+.select-accuont-type select {
+    display: flex;
+    box-sizing: border-box;
+    border: solid 2px var(--main-color-grey);
+    border-radius: 4px;
+    font-size: 15px;
+    padding: 0.5em 4em 0.5em 1em;
+    margin-left: 10px;
+    text-transform: capitalize;
+    cursor: pointer;
+    appearance: none;
+    outline: none;
+}
+
+.register.custom-arrow {
+    display: block;
+    background-color: var(--main-color-grey);
+    border-radius: 0 4px 4px 0;
+    height: 100%;
+    width: 2em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    pointer-events: none
+}
+
+.register.custom-arrow::after {
+    --size: 0.4em;
+    border-left: var(--size) solid transparent;
+    border-right: var(--size) solid transparent;
+    border-top: var(--size) solid white;
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 500px) {
+    .select-accuont-type {
+        display: block;
+    }
+
+    .register-form select {
+        margin-left: 0;
+    }
+
+    .register.custom-arrow {
+        height: 59%;
+        transform: translateY(70%);
+    }
+}
+
+.input-fillall {
+    opacity: 0;
+    color: var(--fourth-color-red);
+    margin-bottom: 10px;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.input-fillall.invalid {
+    opacity: 1;
+}
+
+.button-signup {
+    border: none;
+    border-radius: 7px;
+    background-color: var(--second-color-red);
+    width: 350px;
+    height: 45px;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.button-signup:hover {
+    background-color: var(--main-color-red);
+}
+
+@media screen and (max-width: 500px) {
+    .button-signup {
+        width: 100%;
+    }
+}
