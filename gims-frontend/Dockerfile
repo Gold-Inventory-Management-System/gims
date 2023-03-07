@@ -1,4 +1,4 @@
-FROM node:16-alpine as builder
+FROM node:18-alpine as builder
 RUN apk update ; apk add --no-cache \
   && rm -rf /var/cache/apk/*
 WORKDIR /opt/
@@ -7,7 +7,7 @@ ENV NODE_ENV=production
 
 
 COPY package.json /opt/
-RUN yarn install
+RUN yarn
 COPY . . 
 RUN yarn build 
 
