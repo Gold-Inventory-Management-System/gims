@@ -24,23 +24,24 @@ services:
       - TIMESCALECONN=postgres://postgres:ppaallmm@gims-timescaledb:5432/gims
       - ADMIN_USERNAME=admin
       - ADMIN_PASSWORD=admin
+      - PORT=8080
     restart: on-failure
     networks:
       - default
     ports:
     - "8080:8080"
-  gims-frontend:
-    container_name: gims-frontend
-    build: 
-      context: ./gims-frontend
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    stdin_open: true
-    depends_on: 
-      - gims-backend
-    volumes:
-      - ./gims-frontend:/opt/gims-frontend
-      - /opt/gims-frontend/node_modules
+  # gims-frontend:
+  #   container_name: gims-frontend
+  #   build: 
+  #     context: ./gims-frontend
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3000:3000"
+  #   stdin_open: true
+  #   depends_on: 
+  #     - gims-backend
+  #   volumes:
+  #     - ./gims-frontend:/opt/gims-frontend
+  #     - /opt/gims-frontend/node_modules
 volumes: 
   data:
