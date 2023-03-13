@@ -7,11 +7,12 @@ ENV NODE_ENV=production
 
 
 COPY package.json /opt/
-RUN yarn
+RUN npm install
 COPY . . 
-RUN yarn build 
+RUN npm run build
 
-FROM nginx:1.21-alpine
+FROM nginx:1.21.0-alpine as production
+ENV NODE_ENV production
 WORKDIR /usr/share/nginx/html
 COPY --from=builder /opt/build /usr/share/nginx/html/
 
